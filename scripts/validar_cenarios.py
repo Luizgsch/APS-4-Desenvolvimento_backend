@@ -5,6 +5,7 @@ from datetime import datetime, timezone
 import hashlib
 import json
 import os
+import secrets
 from pathlib import Path
 import signal
 import socket
@@ -15,10 +16,11 @@ import tempfile
 import time
 import urllib.error
 import urllib.request
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-OUTPUT = ROOT / "docs" / "evidencias" / "etapa8.json"
+OUTPUT = ROOT / "docs" / "evidencias" / "aps4-regressao.json"
 EVENTO = dict(titulo="Workshop", descricao="Demonstração APS 3", data="2026-12-01",
               horario="19:00", local="Sala 1", capacidade=2, categoria="Workshop")
 REPORTS = ("/relatorios/eventos/ocupacao", "/relatorios/eventos/categorias", "/relatorios/participantes/cursos")
@@ -44,6 +46,8 @@ class Demonstracao:
     def __init__(self, directory):
         self.directory = Path(directory)
         self.path = self.directory / "demonstracao.db"
+        self.token = None
+        self.password = secrets.token_urlsafe(24)
         self.result = {"inicio_utc": datetime.now(timezone.utc).isoformat(),
                        "metodo": "HTTP real com Uvicorn; não executado pela interface Swagger",
                        "banco_temporario": True, "processos": [], "cenarios": []}
@@ -74,6 +78,7 @@ class Demonstracao:
                         if time.monotonic() > deadline:
                             raise RuntimeError("Tempo de inicialização excedido")
                         time.sleep(0.1)
+                self.authenticate()
                 yield
             finally:
                 if process.poll() is None:
@@ -86,6 +91,28 @@ class Demonstracao:
                     except subprocess.TimeoutExpired:
                         process.kill()
                         process.wait(timeout=5)
+
+    def authenticate(self):
+        """Administrador descartável pelo serviço local; não há promoção HTTP."""
+        def send(route, data):
+            req = urllib.request.Request(self.base + route, method="POST",
+                data=json.dumps(data).encode(), headers={"Content-Type": "application/json"})
+            with urllib.request.urlopen(req, timeout=10) as response:
+                return json.loads(response.read())
+        if self.token is None:
+            from sqlalchemy import URL, create_engine
+            from sqlalchemy.orm import Session
+            from schema.usuario_schema import UsuarioCreate
+            from service.usuario_service import criar_administrador
+            engine = create_engine(URL.create("sqlite+pysqlite", database=str(self.path)),
+                                   connect_args={"autocommit": False})
+            try:
+                with Session(engine) as db:
+                    criar_administrador(db, UsuarioCreate(nome="Regressao", email="regressao@example.com", senha=self.password))
+            finally:
+                engine.dispose()
+        self.token = send("/auth/login", dict(email="regressao@example.com", senha=self.password))["access_token"]
+        self.result["regressao_autenticada"] = True
 
     @contextmanager
     def case(self, number, name):
@@ -102,7 +129,7 @@ class Demonstracao:
     def request(self, method, route, expected, data=None):
         req = urllib.request.Request(self.base + route, method=method,
                                      data=None if data is None else json.dumps(data).encode(),
-                                     headers={"Content-Type": "application/json"})
+                                     headers={"Content-Type": "application/json", "Authorization": "Bearer " + self.token})
         try:
             response = urllib.request.urlopen(req, timeout=10)
         except urllib.error.HTTPError as exc:
@@ -214,7 +241,7 @@ def main():
     def fingerprint():
         return hashlib.sha256(real_db.read_bytes()).hexdigest() if real_db.exists() else None
     before = fingerprint()
-    with tempfile.TemporaryDirectory(prefix="aps3-cenarios-") as directory:
+    with tempfile.TemporaryDirectory(prefix="aps4-cenarios-") as directory, patch.dict(os.environ, {"JWT_SECRET_KEY": secrets.token_urlsafe(48)}):
         demo = Demonstracao(directory)
         try:
             demo.run()

@@ -1,0 +1,112 @@
+{
+  "inicio_utc": "2026-11-18T19:52:32.826209+00:00",
+  "metodo": "HTTP real com Uvicorn, banco e chave temporarios; senha e token omitidos",
+  "banco_temporario": true,
+  "processos": [
+    25628
+  ],
+  "cenarios": [
+    {
+      "numero": 1,
+      "cenario": "Cadastro de conta de teste",
+      "resultado": "aprovado",
+      "requisicoes": [
+        {
+          "metodo": "POST",
+          "rota": "/usuarios",
+          "json_enviado": {
+            "nome": "Aluno",
+            "email": "aluno@example.com"
+          },
+          "status_esperado": 201,
+          "status_observado": 201,
+          "json_recebido": {
+            "id": 1,
+            "nome": "Aluno",
+            "email": "aluno@example.com",
+            "perfil": "usuario"
+          }
+        }
+      ]
+    },
+    {
+      "numero": 2,
+      "cenario": "Login e validacao do JWT retornado",
+      "resultado": "aprovado",
+      "requisicoes": [
+        {
+          "metodo": "POST",
+          "rota": "/auth/login",
+          "json_enviado": {
+            "email": "aluno@example.com"
+          },
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": {
+            "access_token": "OMITIDO",
+            "token_type": "bearer"
+          }
+        }
+      ],
+      "assinatura_expiracao_identidade_verificadas": true
+    },
+    {
+      "numero": 3,
+      "cenario": "Senha incorreta",
+      "resultado": "aprovado",
+      "requisicoes": [
+        {
+          "metodo": "POST",
+          "rota": "/auth/login",
+          "json_enviado": {
+            "email": "aluno@example.com"
+          },
+          "status_esperado": 401,
+          "status_observado": 401,
+          "json_recebido": {
+            "detail": "E-mail ou senha inv\u00e1lidos."
+          }
+        }
+      ]
+    },
+    {
+      "numero": 4,
+      "cenario": "Email inexistente",
+      "resultado": "aprovado",
+      "requisicoes": [
+        {
+          "metodo": "POST",
+          "rota": "/auth/login",
+          "json_enviado": {
+            "email": "ausente@example.com"
+          },
+          "status_esperado": 401,
+          "status_observado": 401,
+          "json_recebido": {
+            "detail": "E-mail ou senha inv\u00e1lidos."
+          }
+        }
+      ]
+    },
+    {
+      "numero": 5,
+      "cenario": "JSON incompleto",
+      "resultado": "aprovado",
+      "requisicoes": [
+        {
+          "metodo": "POST",
+          "rota": "/auth/login",
+          "json_enviado": {
+            "email": "aluno@example.com"
+          },
+          "status_esperado": 422,
+          "status_observado": 422,
+          "json_recebido": {
+            "detail": "Dados de login inv\u00e1lidos. Envie somente e-mail e senha em JSON."
+          }
+        }
+      ]
+    }
+  ],
+  "resultado": "aprovado"
+}

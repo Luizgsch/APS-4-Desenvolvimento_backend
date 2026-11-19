@@ -1,0 +1,1 @@
+12 cenários de segurança aprovados. Evidências: docs/evidencias/aps4-etapa8/cenarios-seguranca.json

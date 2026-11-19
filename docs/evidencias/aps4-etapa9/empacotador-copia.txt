@@ -1,0 +1,3 @@
+Pacote: D:\Projetos\APS-4-Desenvolvimento-backend\tmp\aps4-entrega-wh9u7vda\output\APS-4-Desenvolvimento-backend.zip
+Arquivos: 112
+SHA-256: 9d46b0baa2acd6b864cf9ba091c4e814d4630f83578969f157e0eb54ece38bff

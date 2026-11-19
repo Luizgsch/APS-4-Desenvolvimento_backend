@@ -1,0 +1,7 @@
+{
+  "argon2id_biblioteca": "aprovado",
+  "jwt_biblioteca": "aprovado",
+  "configuracao_local": "valida; chave omitida",
+  "aps3_e_bancos": "preservados",
+  "nota": "Smoke tests das bibliotecas; não são endpoints nem serviços de autenticação."
+}

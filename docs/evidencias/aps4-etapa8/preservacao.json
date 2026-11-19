@@ -1,0 +1,16 @@
+{
+  "arquivos_verificados": 37,
+  "aps3_e_bancos": "preservados",
+  "integridade": {
+    "D:\\Projetos\\APS-3-Desenvolvimento-backend\\eventos.db": {
+      "integrity_check": "ok",
+      "foreign_key_check": []
+    },
+    "D:\\Projetos\\APS-4-Desenvolvimento-backend\\eventos.db": {
+      "integrity_check": "ok",
+      "foreign_key_check": []
+    }
+  },
+  "chave_local": "ausente dos arquivos versionaveis",
+  "fixtures_swagger_removidas": true
+}

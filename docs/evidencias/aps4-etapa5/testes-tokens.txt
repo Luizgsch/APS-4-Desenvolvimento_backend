@@ -1,0 +1,13 @@
+test_expired_and_future_issued_tokens_are_rejected (test_tokens.TokenTests.test_expired_and_future_issued_tokens_are_rejected) ... ok
+test_generation_rejects_invalid_identity (test_tokens.TokenTests.test_generation_rejects_invalid_identity) ... ok
+test_invalid_date_types_and_chronology_are_rejected (test_tokens.TokenTests.test_invalid_date_types_and_chronology_are_rejected) ... ok
+test_malformed_token_has_no_sensitive_exception_message (test_tokens.TokenTests.test_malformed_token_has_no_sensitive_exception_message) ... ok
+test_missing_required_claims_and_invalid_subjects_are_rejected (test_tokens.TokenTests.test_missing_required_claims_and_invalid_subjects_are_rejected) ... ok
+test_valid_token_has_minimal_claims_and_configured_expiration (test_tokens.TokenTests.test_valid_token_has_minimal_claims_and_configured_expiration) ... ok
+test_wrong_algorithm_and_unsigned_tokens_are_rejected (test_tokens.TokenTests.test_wrong_algorithm_and_unsigned_tokens_are_rejected) ... ok
+test_wrong_signature_and_tampered_payload_are_rejected (test_tokens.TokenTests.test_wrong_signature_and_tampered_payload_are_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.009s
+
+OK

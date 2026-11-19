@@ -7,7 +7,7 @@ from sqlalchemy import func, select, text
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
-from api_support import APITestCase
+from api_support import AuthenticatedAPITestCase as APITestCase
 from model import Inscricao
 
 

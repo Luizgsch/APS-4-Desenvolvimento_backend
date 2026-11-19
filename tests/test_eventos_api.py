@@ -12,7 +12,7 @@ from sqlalchemy.orm import Session
 
 import database
 import main
-from api_support import APITestCase
+from api_support import AuthenticatedAPITestCase as APITestCase
 from model import Evento, Inscricao, Participante
 
 
@@ -56,12 +56,12 @@ class EventosAPITests(APITestCase):
         result = subprocess.run([sys.executable, '-c', code, str(self.path)],
                                 cwd=Path(__file__).resolve().parents[1], capture_output=True, text=True, check=True)
         self.assertEqual(json.loads(result.stdout), ['Persistido'])
-        self.client = TestClient(main.app)
+        self.client = self.new_client()
         self.client.__enter__()
         self.assertEqual(self.client.get(f'/eventos/{eid}').json()['titulo'], 'Persistido')
         self.assertEqual(self.client.delete(f'/eventos/{eid}').status_code, 204)
         self.client.__exit__(None, None, None)
-        self.client = TestClient(main.app)
+        self.client = self.new_client()
         self.client.__enter__()
         self.assertEqual(self.client.get(f'/eventos/{eid}').status_code, 404)
 

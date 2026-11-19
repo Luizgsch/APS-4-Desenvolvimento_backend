@@ -1,0 +1,15 @@
+{
+  "data": "2026-11-18",
+  "metodo": "Interação visual com Swagger UI no Brave por computer-use",
+  "ambiente": "Uvicorn em 127.0.0.1, porta dinâmica, banco e chave descartáveis",
+  "resultado": "aprovado",
+  "verificacoes": [
+    {"acao": "Expandir GET /auth/me, Try it out e Execute sem autorização", "status_observado": 401},
+    {"acao": "Abrir Authorize, inserir token temporário sem prefixo e Apply credentials", "estado_observado": "BearerJWT (http, Bearer), Authorized, valor mascarado"},
+    {"acao": "Executar GET /auth/me com Bearer aplicado pelo Swagger", "status_observado": 200, "resposta_publica": {"id": 1, "nome": "Regressao", "email": "regressao@example.com", "perfil": "administrador"}},
+    {"acao": "Remove authorization, Close e executar novamente GET /auth/me", "status_observado": 401}
+  ],
+  "evidencia_complementar": "swagger-http.txt contém as três requisições correspondentes registradas pelo servidor",
+  "limite": "O fluxo Bearer foi operado visualmente. Os 12 cenários completos foram executados pelo script HTTP, não individualmente pela interface Swagger.",
+  "segredos": "Token e senha não incluídos neste registro; fixtures locais removidas ao encerrar o servidor"
+}

@@ -1,0 +1,13 @@
+test_admin_executes_mutations_reads_and_reports (test_autorizacao_api.AutorizacaoAPITests.test_admin_executes_mutations_reads_and_reports) ... ok
+test_anonymous_reads_events_but_not_participant_data (test_autorizacao_api.AutorizacaoAPITests.test_anonymous_reads_events_but_not_participant_data) ... ok
+test_common_can_register_independent_participants_with_business_rules (test_autorizacao_api.AutorizacaoAPITests.test_common_can_register_independent_participants_with_business_rules) ... ok
+test_common_cannot_mutate_events_or_participants_and_nothing_changes (test_autorizacao_api.AutorizacaoAPITests.test_common_cannot_mutate_events_or_participants_and_nothing_changes) ... ok
+test_common_reads_participants_and_registrations_but_not_reports (test_autorizacao_api.AutorizacaoAPITests.test_common_reads_participants_and_registrations_but_not_reports) ... ok
+test_database_profile_change_takes_effect_without_new_login (test_autorizacao_api.AutorizacaoAPITests.test_database_profile_change_takes_effect_without_new_login) ... ok
+test_forged_profile_in_signed_token_body_headers_or_query_does_not_grant_access (test_autorizacao_api.AutorizacaoAPITests.test_forged_profile_in_signed_token_body_headers_or_query_does_not_grant_access) ... ok
+test_openapi_protects_new_read_routes_and_no_promotion_endpoint_exists (test_autorizacao_api.AutorizacaoAPITests.test_openapi_protects_new_read_routes_and_no_promotion_endpoint_exists) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 13.154s
+
+OK

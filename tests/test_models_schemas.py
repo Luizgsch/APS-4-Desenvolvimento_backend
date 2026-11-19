@@ -57,7 +57,7 @@ class ModelTests(unittest.TestCase):
             self.assertEqual(InscricaoRead.model_validate(inscricao).evento_id, ids[0])
             self.assertEqual(EventoRead.model_validate(inscricao.evento).horario, time(19))
             self.assertEqual(ParticipanteRead.model_validate(inscricao.participante).email, PARTICIPANTE['email'])
-        self.assertEqual(set(inspect(self.engine).get_table_names()), {"eventos", "participantes", "inscricoes"})
+        self.assertEqual(set(inspect(self.engine).get_table_names()), {"eventos", "participantes", "inscricoes", "usuarios"})
 
     def test_duplicate_email_rejected_including_ascii_case(self):
         with Session(self.engine) as session:

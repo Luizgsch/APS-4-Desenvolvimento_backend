@@ -1,0 +1,690 @@
+{
+  "inicio_utc": "2026-11-18T20:12:02.174481+00:00",
+  "metodo": "HTTP real com Uvicorn; demonstração visual do Swagger registrada separadamente",
+  "banco_temporario": true,
+  "cenarios": [
+    {
+      "numero": 1,
+      "cenario": "Cadastro público de usuário e validação sem exposição",
+      "requisicoes": [
+        {
+          "metodo": "POST",
+          "rota": "/usuarios",
+          "json_enviado": {
+            "nome": "Aluno APS 4",
+            "email": "aluno@example.com",
+            "senha": "OMITIDO"
+          },
+          "autenticacao": "ausente",
+          "status_esperado": 201,
+          "status_observado": 201,
+          "json_recebido": {
+            "id": 2,
+            "nome": "Aluno APS 4",
+            "email": "aluno@example.com",
+            "perfil": "usuario"
+          }
+        },
+        {
+          "metodo": "POST",
+          "rota": "/usuarios",
+          "json_enviado": {
+            "nome": "Tentativa",
+            "email": "extra@example.com",
+            "senha": "OMITIDO",
+            "perfil": "administrador"
+          },
+          "autenticacao": "ausente",
+          "status_esperado": 422,
+          "status_observado": 422,
+          "json_recebido": {
+            "detail": "Dados de cadastro inválidos. Confira nome, e-mail, senha e campos permitidos."
+          }
+        },
+        {
+          "metodo": "POST",
+          "rota": "/usuarios",
+          "json_enviado": {
+            "nome": "Tentativa",
+            "email": "extra@example.com",
+            "senha": "OMITIDO",
+            "senha_hash": "OMITIDO"
+          },
+          "autenticacao": "ausente",
+          "status_esperado": 422,
+          "status_observado": 422,
+          "json_recebido": {
+            "detail": "Dados de cadastro inválidos. Confira nome, e-mail, senha e campos permitidos."
+          }
+        },
+        {
+          "metodo": "POST",
+          "rota": "/usuarios",
+          "json_enviado": {
+            "nome": "",
+            "email": "invalido",
+            "senha": "OMITIDO"
+          },
+          "autenticacao": "ausente",
+          "status_esperado": 422,
+          "status_observado": 422,
+          "json_recebido": {
+            "detail": "Dados de cadastro inválidos. Confira nome, e-mail, senha e campos permitidos."
+          }
+        },
+        {
+          "metodo": "POST",
+          "rota": "/auth/login",
+          "json_enviado": "JSON malformado; conteúdo omitido",
+          "autenticacao": "ausente",
+          "status_esperado": 422,
+          "status_observado": 422,
+          "json_recebido": {
+            "detail": "Dados de login inválidos. Envie somente e-mail e senha em JSON."
+          }
+        }
+      ],
+      "resultado": "aprovado"
+    },
+    {
+      "numero": 2,
+      "cenario": "Senha persistida somente como hash Argon2id",
+      "requisicoes": [],
+      "resultado": "aprovado",
+      "verificacao_banco": {
+        "algoritmo": "Argon2id",
+        "senha_original_persistida": false,
+        "verificacao_correta": true,
+        "verificacao_incorreta_rejeitada": true,
+        "hash": "OMITIDO"
+      }
+    },
+    {
+      "numero": 3,
+      "cenario": "E-mail duplicado",
+      "requisicoes": [
+        {
+          "metodo": "POST",
+          "rota": "/usuarios",
+          "json_enviado": {
+            "nome": "Duplicado",
+            "email": "ALUNO@EXAMPLE.COM",
+            "senha": "OMITIDO"
+          },
+          "autenticacao": "ausente",
+          "status_esperado": 409,
+          "status_observado": 409,
+          "json_recebido": {
+            "detail": "Já existe um usuário cadastrado com este e-mail."
+          }
+        }
+      ],
+      "resultado": "aprovado"
+    },
+    {
+      "numero": 4,
+      "cenario": "Login válido",
+      "requisicoes": [
+        {
+          "metodo": "POST",
+          "rota": "/auth/login",
+          "json_enviado": {
+            "email": "aluno@example.com",
+            "senha": "OMITIDO"
+          },
+          "autenticacao": "ausente",
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": {
+            "access_token": "OMITIDO",
+            "token_type": "bearer"
+          }
+        }
+      ],
+      "resultado": "aprovado"
+    },
+    {
+      "numero": 5,
+      "cenario": "Login inválido com mensagem indistinguível",
+      "requisicoes": [
+        {
+          "metodo": "POST",
+          "rota": "/auth/login",
+          "json_enviado": {
+            "email": "aluno@example.com",
+            "senha": "OMITIDO"
+          },
+          "autenticacao": "ausente",
+          "status_esperado": 401,
+          "status_observado": 401,
+          "json_recebido": {
+            "detail": "E-mail ou senha inválidos."
+          }
+        },
+        {
+          "metodo": "POST",
+          "rota": "/auth/login",
+          "json_enviado": {
+            "email": "ausente@example.com",
+            "senha": "OMITIDO"
+          },
+          "autenticacao": "ausente",
+          "status_esperado": 401,
+          "status_observado": 401,
+          "json_recebido": {
+            "detail": "E-mail ou senha inválidos."
+          }
+        }
+      ],
+      "resultado": "aprovado"
+    },
+    {
+      "numero": 6,
+      "cenario": "Rota protegida sem token",
+      "requisicoes": [
+        {
+          "metodo": "GET",
+          "rota": "/auth/me",
+          "json_enviado": null,
+          "autenticacao": "ausente",
+          "status_esperado": 401,
+          "status_observado": 401,
+          "json_recebido": {
+            "detail": "Não foi possível validar as credenciais."
+          }
+        },
+        {
+          "metodo": "POST",
+          "rota": "/eventos",
+          "json_enviado": {
+            "titulo": "Workshop",
+            "descricao": "Demonstração APS 3",
+            "data": "2026-12-01",
+            "horario": "19:00",
+            "local": "Sala 1",
+            "capacidade": 2,
+            "categoria": "Workshop"
+          },
+          "autenticacao": "ausente",
+          "status_esperado": 401,
+          "status_observado": 401,
+          "json_recebido": {
+            "detail": "Não foi possível validar as credenciais."
+          }
+        }
+      ],
+      "resultado": "aprovado"
+    },
+    {
+      "numero": 7,
+      "cenario": "Rota protegida com token válido",
+      "requisicoes": [
+        {
+          "metodo": "GET",
+          "rota": "/auth/me",
+          "json_enviado": null,
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": {
+            "id": 2,
+            "nome": "Aluno APS 4",
+            "email": "aluno@example.com",
+            "perfil": "usuario"
+          }
+        },
+        {
+          "metodo": "GET",
+          "rota": "/participantes",
+          "json_enviado": null,
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": []
+        }
+      ],
+      "resultado": "aprovado"
+    },
+    {
+      "numero": 8,
+      "cenario": "Token inválido, adulterado e expirado",
+      "requisicoes": [
+        {
+          "metodo": "GET",
+          "rota": "/auth/me",
+          "json_enviado": null,
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 401,
+          "status_observado": 401,
+          "json_recebido": {
+            "detail": "Não foi possível validar as credenciais."
+          }
+        },
+        {
+          "metodo": "GET",
+          "rota": "/auth/me",
+          "json_enviado": null,
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 401,
+          "status_observado": 401,
+          "json_recebido": {
+            "detail": "Não foi possível validar as credenciais."
+          }
+        },
+        {
+          "metodo": "GET",
+          "rota": "/auth/me",
+          "json_enviado": null,
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 401,
+          "status_observado": 401,
+          "json_recebido": {
+            "detail": "Não foi possível validar as credenciais."
+          }
+        },
+        {
+          "metodo": "GET",
+          "rota": "/auth/me",
+          "json_enviado": null,
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 401,
+          "status_observado": 401,
+          "json_recebido": {
+            "detail": "Não foi possível validar as credenciais."
+          }
+        },
+        {
+          "metodo": "GET",
+          "rota": "/auth/me",
+          "json_enviado": null,
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 401,
+          "status_observado": 401,
+          "json_recebido": {
+            "detail": "Não foi possível validar as credenciais."
+          }
+        },
+        {
+          "metodo": "GET",
+          "rota": "/auth/me",
+          "json_enviado": null,
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 401,
+          "status_observado": 401,
+          "json_recebido": {
+            "detail": "Não foi possível validar as credenciais."
+          }
+        }
+      ],
+      "resultado": "aprovado"
+    },
+    {
+      "numero": 9,
+      "cenario": "Usuário comum tentando operação administrativa",
+      "requisicoes": [
+        {
+          "metodo": "POST",
+          "rota": "/eventos",
+          "json_enviado": {
+            "titulo": "Workshop",
+            "descricao": "Demonstração APS 3",
+            "data": "2026-12-01",
+            "horario": "19:00",
+            "local": "Sala 1",
+            "capacidade": 2,
+            "categoria": "Workshop"
+          },
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 403,
+          "status_observado": 403,
+          "json_recebido": {
+            "detail": "Você não possui permissão para executar esta operação."
+          }
+        },
+        {
+          "metodo": "GET",
+          "rota": "/relatorios/eventos/ocupacao",
+          "json_enviado": null,
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 403,
+          "status_observado": 403,
+          "json_recebido": {
+            "detail": "Você não possui permissão para executar esta operação."
+          }
+        }
+      ],
+      "resultado": "aprovado"
+    },
+    {
+      "numero": 10,
+      "cenario": "Administrador executando operação administrativa",
+      "requisicoes": [
+        {
+          "metodo": "POST",
+          "rota": "/eventos",
+          "json_enviado": {
+            "titulo": "Workshop",
+            "descricao": "Demonstração APS 3",
+            "data": "2026-12-01",
+            "horario": "19:00",
+            "local": "Sala 1",
+            "capacidade": 2,
+            "categoria": "Workshop"
+          },
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 201,
+          "status_observado": 201,
+          "json_recebido": {
+            "titulo": "Workshop",
+            "descricao": "Demonstração APS 3",
+            "data": "2026-12-01",
+            "horario": "19:00:00",
+            "local": "Sala 1",
+            "capacidade": 2,
+            "categoria": "Workshop",
+            "id": 1
+          }
+        },
+        {
+          "metodo": "POST",
+          "rota": "/participantes",
+          "json_enviado": {
+            "nome": "Participante",
+            "email": "p@example.com",
+            "curso": "Computacao"
+          },
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 201,
+          "status_observado": 201,
+          "json_recebido": {
+            "nome": "Participante",
+            "email": "p@example.com",
+            "curso": "Computacao",
+            "id": 1
+          }
+        },
+        {
+          "metodo": "POST",
+          "rota": "/eventos/1/inscricoes/1",
+          "json_enviado": null,
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 201,
+          "status_observado": 201,
+          "json_recebido": {
+            "evento_id": 1,
+            "participante_id": 1,
+            "id": 1,
+            "data_inscricao": "2026-11-18"
+          }
+        }
+      ],
+      "resultado": "aprovado"
+    },
+    {
+      "numero": 11,
+      "cenario": "Consulta da identidade do token sem confiar no cliente",
+      "requisicoes": [
+        {
+          "metodo": "GET",
+          "rota": "/auth/me?usuario_id=1&id=1",
+          "json_enviado": null,
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": {
+            "id": 2,
+            "nome": "Aluno APS 4",
+            "email": "aluno@example.com",
+            "perfil": "usuario"
+          }
+        }
+      ],
+      "resultado": "aprovado"
+    },
+    {
+      "numero": 12,
+      "cenario": "Continuidade da APS 3, relatórios e persistência após reiniciar",
+      "requisicoes": [
+        {
+          "metodo": "GET",
+          "rota": "/auth/me",
+          "json_enviado": null,
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": {
+            "id": 2,
+            "nome": "Aluno APS 4",
+            "email": "aluno@example.com",
+            "perfil": "usuario"
+          }
+        },
+        {
+          "metodo": "GET",
+          "rota": "/eventos/1",
+          "json_enviado": null,
+          "autenticacao": "ausente",
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": {
+            "titulo": "Workshop",
+            "descricao": "Demonstração APS 3",
+            "data": "2026-12-01",
+            "horario": "19:00:00",
+            "local": "Sala 1",
+            "capacidade": 2,
+            "categoria": "Workshop",
+            "id": 1
+          }
+        },
+        {
+          "metodo": "GET",
+          "rota": "/relatorios/eventos/ocupacao",
+          "json_enviado": null,
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": [
+            {
+              "evento_id": 1,
+              "titulo": "Workshop",
+              "capacidade": 2,
+              "total_inscritos": 1,
+              "vagas_disponiveis": 1,
+              "percentual_ocupacao": 50.0
+            }
+          ]
+        },
+        {
+          "metodo": "GET",
+          "rota": "/relatorios/eventos/categorias",
+          "json_enviado": null,
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": [
+            {
+              "categoria": "Workshop",
+              "total_eventos": 1,
+              "capacidade_total": 2,
+              "total_inscricoes": 1
+            }
+          ]
+        },
+        {
+          "metodo": "GET",
+          "rota": "/relatorios/participantes/cursos",
+          "json_enviado": null,
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": [
+            {
+              "curso": "Computacao",
+              "total_participantes": 1,
+              "total_inscricoes": 1
+            }
+          ]
+        },
+        {
+          "metodo": "POST",
+          "rota": "/eventos/1/inscricoes/1",
+          "json_enviado": null,
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 409,
+          "status_observado": 409,
+          "json_recebido": {
+            "detail": "Participante já está inscrito neste evento."
+          }
+        },
+        {
+          "metodo": "PUT",
+          "rota": "/eventos/1",
+          "json_enviado": {
+            "titulo": "Workshop",
+            "descricao": "Demonstração APS 3",
+            "data": "2026-12-01",
+            "horario": "19:00",
+            "local": "Sala 1",
+            "capacidade": 1,
+            "categoria": "Workshop"
+          },
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": {
+            "titulo": "Workshop",
+            "descricao": "Demonstração APS 3",
+            "data": "2026-12-01",
+            "horario": "19:00:00",
+            "local": "Sala 1",
+            "capacidade": 1,
+            "categoria": "Workshop",
+            "id": 1
+          }
+        },
+        {
+          "metodo": "POST",
+          "rota": "/participantes",
+          "json_enviado": {
+            "nome": "Outro",
+            "email": "outro@example.com",
+            "curso": "Direito"
+          },
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 201,
+          "status_observado": 201,
+          "json_recebido": {
+            "nome": "Outro",
+            "email": "outro@example.com",
+            "curso": "Direito",
+            "id": 2
+          }
+        },
+        {
+          "metodo": "POST",
+          "rota": "/eventos/1/inscricoes/2",
+          "json_enviado": null,
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 409,
+          "status_observado": 409,
+          "json_recebido": {
+            "detail": "Não existem vagas disponíveis para este evento."
+          }
+        },
+        {
+          "metodo": "PUT",
+          "rota": "/participantes/1",
+          "json_enviado": {
+            "nome": "Atualizado",
+            "email": "p@example.com",
+            "curso": "Direito"
+          },
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": {
+            "nome": "Atualizado",
+            "email": "p@example.com",
+            "curso": "Direito",
+            "id": 1
+          }
+        },
+        {
+          "metodo": "GET",
+          "rota": "/relatorios/participantes/cursos",
+          "json_enviado": null,
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": [
+            {
+              "curso": "Direito",
+              "total_participantes": 2,
+              "total_inscricoes": 1
+            }
+          ]
+        },
+        {
+          "metodo": "DELETE",
+          "rota": "/participantes/1",
+          "json_enviado": null,
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 204,
+          "status_observado": 204,
+          "json_recebido": null
+        },
+        {
+          "metodo": "GET",
+          "rota": "/relatorios/eventos/ocupacao",
+          "json_enviado": null,
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": [
+            {
+              "evento_id": 1,
+              "titulo": "Workshop",
+              "capacidade": 1,
+              "total_inscritos": 0,
+              "vagas_disponiveis": 1,
+              "percentual_ocupacao": 0.0
+            }
+          ]
+        },
+        {
+          "metodo": "DELETE",
+          "rota": "/eventos/1",
+          "json_enviado": null,
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 204,
+          "status_observado": 204,
+          "json_recebido": null
+        },
+        {
+          "metodo": "GET",
+          "rota": "/relatorios/eventos/ocupacao",
+          "json_enviado": null,
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": []
+        },
+        {
+          "metodo": "GET",
+          "rota": "/relatorios/eventos/categorias",
+          "json_enviado": null,
+          "autenticacao": "Bearer de teste; valor omitido",
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": []
+        }
+      ],
+      "resultado": "aprovado",
+      "reinicializacao_e_integridade": "aprovadas"
+    }
+  ],
+  "resultado": "aprovado",
+  "banco_real_preservado": true,
+  "fim_utc": "2026-11-18T20:12:10.500151+00:00"
+}

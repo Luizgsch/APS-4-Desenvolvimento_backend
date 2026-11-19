@@ -16,3 +16,11 @@ starlette==1.6.0
 typing-inspection==0.4.4
 typing_extensions==4.16.0
 uvicorn==0.53.0
+# Segurança (APS 4): hash Argon2, JWT e configuração local.
+pwdlib[argon2]==0.4.2
+argon2-cffi==25.1.0
+argon2-cffi-bindings==26.2.0
+cffi==2.1.1
+pycparser==3.12
+PyJWT==2.15.1
+python-dotenv==1.2.4

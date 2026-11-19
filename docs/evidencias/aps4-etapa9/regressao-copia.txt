@@ -1,0 +1,1 @@
+12 cenários aprovados. Evidências: D:\Projetos\APS-4-Desenvolvimento-backend\tmp\aps4-entrega-wh9u7vda\docs\evidencias\aps4-regressao.json

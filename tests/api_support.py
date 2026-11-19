@@ -9,6 +9,11 @@ from sqlalchemy.orm import sessionmaker
 
 import database
 import main
+import secrets
+from pydantic import SecretStr
+from security.config import SecuritySettings
+from schema.usuario_schema import UsuarioCreate
+from service.usuario_service import criar_administrador
 
 
 class APITestCase(unittest.TestCase):
@@ -37,3 +42,23 @@ class APITestCase(unittest.TestCase):
             item.stop()
         self.engine.dispose()
         self.directory.cleanup()
+
+
+class AuthenticatedAPITestCase(APITestCase):
+    """Regressão de negócio com login real, sem substituir autenticação."""
+
+    def setUp(self):
+        super().setUp()
+        config = patch("security.tokens.load_security_settings", return_value=SecuritySettings(SecretStr(secrets.token_urlsafe(48))))
+        config.start()
+        self.addCleanup(config.stop)
+        password = secrets.token_urlsafe(24)
+        with self.factory() as db:
+            criar_administrador(db, UsuarioCreate(nome="Regressão", email="regressao@example.com", senha=password))
+        login = self.client.post("/auth/login", json={"email": "regressao@example.com", "senha": password})
+        self.assertEqual(login.status_code, 200)
+        self.auth_headers = {"Authorization": "Bearer " + login.json()["access_token"]}
+        self.client.headers.update(self.auth_headers)
+
+    def new_client(self):
+        return TestClient(main.app, headers=self.auth_headers)

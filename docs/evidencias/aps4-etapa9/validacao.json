@@ -1,0 +1,37 @@
+{
+  "resultado": "aprovado",
+  "ambiente": "venv criada do zero em c\u00f3pia extra\u00edda",
+  "codigo_testado": "mesmos hashes do manifesto",
+  "etapas": {
+    "criacao-ambiente": {
+      "exit_code": 0
+    },
+    "instalacao-limpa": {
+      "exit_code": 0
+    },
+    "dependencias": {
+      "exit_code": 0
+    },
+    "versoes": {
+      "exit_code": 0
+    },
+    "testes-copia": {
+      "exit_code": 0
+    },
+    "seguranca-copia": {
+      "exit_code": 0
+    },
+    "regressao-copia": {
+      "exit_code": 0
+    },
+    "empacotador-copia": {
+      "exit_code": 0
+    }
+  },
+  "controles_negativos": {
+    "chave_local": "recusado sem exibir valor",
+    "jwt": "recusado sem exibir valor"
+  },
+  "banco_real_criado_na_copia": false,
+  "env_real_incluido": false
+}

@@ -1,0 +1,13 @@
+test_administrator_uses_same_login_without_profile_claim (test_auth_api.AuthAPITests.test_administrator_uses_same_login_without_profile_claim) ... ok
+test_database_failure_is_generic_and_session_recovers (test_auth_api.AuthAPITests.test_database_failure_is_generic_and_session_recovers) ... ok
+test_invalid_body_and_json_do_not_echo_password_or_hash (test_auth_api.AuthAPITests.test_invalid_body_and_json_do_not_echo_password_or_hash) ... ok
+test_login_returns_signed_expiring_bearer_without_sensitive_data (test_auth_api.AuthAPITests.test_login_returns_signed_expiring_bearer_without_sensitive_data) ... ok
+test_missing_configuration_returns_generic_503_without_token (test_auth_api.AuthAPITests.test_missing_configuration_returns_generic_503_without_token) ... ok
+test_openapi_login_is_json_and_me_remains_for_stage6 (test_auth_api.AuthAPITests.test_openapi_login_is_json_and_me_remains_for_stage6) ... ok
+test_unknown_email_also_checks_hash (test_auth_api.AuthAPITests.test_unknown_email_also_checks_hash) ... ok
+test_unknown_email_wrong_and_empty_password_have_same_401 (test_auth_api.AuthAPITests.test_unknown_email_wrong_and_empty_password_have_same_401) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 5.425s
+
+OK

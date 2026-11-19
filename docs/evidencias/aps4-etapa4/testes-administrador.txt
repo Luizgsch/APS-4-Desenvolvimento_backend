@@ -1,0 +1,15 @@
+test_cancellation_does_not_write (test_criar_administrador.CriarAdministradorTests.test_cancellation_does_not_write) ... ok
+test_database_failure_rolls_back_with_generic_message (test_criar_administrador.CriarAdministradorTests.test_database_failure_rolls_back_with_generic_message) ... ok
+test_duplicate_does_not_promote_public_account (test_criar_administrador.CriarAdministradorTests.test_duplicate_does_not_promote_public_account) ... ok
+test_invalid_data_does_not_write_or_echo_values (test_criar_administrador.CriarAdministradorTests.test_invalid_data_does_not_write_or_echo_values) ... ok
+test_local_creation_reuses_hash_and_persists_administrator (test_criar_administrador.CriarAdministradorTests.test_local_creation_reuses_hash_and_persists_administrator) ... ok
+test_mismatched_passwords_do_not_write (test_criar_administrador.CriarAdministradorTests.test_mismatched_passwords_do_not_write) ... ok
+test_no_echo_fallback_is_rejected (test_criar_administrador.CriarAdministradorTests.test_no_echo_fallback_is_rejected) ... ok
+test_password_arguments_rejected_without_echo_and_help_runs_outside_project (test_criar_administrador.CriarAdministradorTests.test_password_arguments_rejected_without_echo_and_help_runs_outside_project) ... ok
+test_public_registration_stays_common_and_has_no_admin_endpoint (test_criar_administrador.CriarAdministradorTests.test_public_registration_stays_common_and_has_no_admin_endpoint) ... ok
+test_repeated_admin_creation_does_not_change_existing_hash (test_criar_administrador.CriarAdministradorTests.test_repeated_admin_creation_does_not_change_existing_hash) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 5.623s
+
+OK

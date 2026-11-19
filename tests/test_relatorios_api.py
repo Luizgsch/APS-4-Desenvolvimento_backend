@@ -6,7 +6,7 @@ from sqlalchemy import event
 from sqlalchemy.exc import OperationalError
 from sqlalchemy.orm import Session
 
-from api_support import APITestCase
+from api_support import AuthenticatedAPITestCase as APITestCase
 import main
 
 
@@ -104,11 +104,11 @@ class RelatoriosAPITests(APITestCase):
         self.register(self.event(), self.participant())
         before = [self.report(index) for index in range(3)]
         self.client.__exit__(None, None, None)
-        self.client = TestClient(main.app)
+        self.client = self.new_client()
         self.client.__enter__()
         self.assertEqual([self.report(index) for index in range(3)], before)
 
-    def test_one_select_per_report_and_documentation(self):
+    def test_one_report_select_plus_identity_and_documentation(self):
         self.register(self.event(), self.participant())
         statements = []
         def capture(connection, cursor, statement, parameters, context, executemany):
@@ -119,7 +119,9 @@ class RelatoriosAPITests(APITestCase):
             for index in range(3):
                 statements.clear()
                 self.report(index)
-                self.assertEqual(len(statements), 1)
+                self.assertEqual(len(statements), 2)
+                self.assertIn("usuarios", statements[0])
+                self.assertNotIn("usuarios", statements[1])
         finally:
             event.remove(self.engine, 'before_cursor_execute', capture)
         schema = self.client.get('/openapi.json').json()

@@ -9,7 +9,7 @@ from sqlalchemy import func, select
 from sqlalchemy.exc import IntegrityError, OperationalError
 from sqlalchemy.orm import Session
 
-from api_support import APITestCase
+from api_support import AuthenticatedAPITestCase as APITestCase
 import main
 from model import Evento, Inscricao
 
@@ -81,7 +81,7 @@ class InscricoesAPITests(APITestCase):
         eid, pid = self.event(), self.participant()
         created = self.client.post(f'/eventos/{eid}/inscricoes/{pid}').json()
         self.client.__exit__(None, None, None)
-        self.client = TestClient(main.app)
+        self.client = self.new_client()
         self.client.__enter__()
         self.assertEqual(len(self.client.get(f'/eventos/{eid}/inscricoes').json()), 1)
         self.assertEqual(self.client.post(f'/eventos/{eid}/inscricoes/{pid}').status_code, 409)

@@ -1,0 +1,2302 @@
+{
+  "inicio_utc": "2026-11-18T20:05:45.453637+00:00",
+  "metodo": "HTTP real com Uvicorn; não executado pela interface Swagger",
+  "banco_temporario": true,
+  "processos": [
+    7504,
+    17252
+  ],
+  "cenarios": [
+    {
+      "numero": 1,
+      "cenario": "Cadastro e consulta de eventos",
+      "resultado": "aprovado",
+      "requisicoes": [
+        {
+          "metodo": "POST",
+          "rota": "/eventos",
+          "json_enviado": {
+            "titulo": "Workshop",
+            "descricao": "Demonstração APS 3",
+            "data": "2026-12-01",
+            "horario": "19:00",
+            "local": "Sala 1",
+            "capacidade": 2,
+            "categoria": "Workshop"
+          },
+          "status_esperado": 201,
+          "status_observado": 201,
+          "json_recebido": {
+            "titulo": "Workshop",
+            "descricao": "Demonstração APS 3",
+            "data": "2026-12-01",
+            "horario": "19:00:00",
+            "local": "Sala 1",
+            "capacidade": 2,
+            "categoria": "Workshop",
+            "id": 1
+          }
+        },
+        {
+          "metodo": "POST",
+          "rota": "/eventos",
+          "json_enviado": {
+            "titulo": "Workshop",
+            "descricao": "Demonstração APS 3",
+            "data": "2026-12-01",
+            "horario": "19:00",
+            "local": "Sala 1",
+            "capacidade": 2,
+            "categoria": "Workshop"
+          },
+          "status_esperado": 201,
+          "status_observado": 201,
+          "json_recebido": {
+            "titulo": "Workshop",
+            "descricao": "Demonstração APS 3",
+            "data": "2026-12-01",
+            "horario": "19:00:00",
+            "local": "Sala 1",
+            "capacidade": 2,
+            "categoria": "Workshop",
+            "id": 2
+          }
+        },
+        {
+          "metodo": "GET",
+          "rota": "/eventos",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": [
+            {
+              "titulo": "Workshop",
+              "descricao": "Demonstração APS 3",
+              "data": "2026-12-01",
+              "horario": "19:00:00",
+              "local": "Sala 1",
+              "capacidade": 2,
+              "categoria": "Workshop",
+              "id": 1
+            },
+            {
+              "titulo": "Workshop",
+              "descricao": "Demonstração APS 3",
+              "data": "2026-12-01",
+              "horario": "19:00:00",
+              "local": "Sala 1",
+              "capacidade": 2,
+              "categoria": "Workshop",
+              "id": 2
+            }
+          ]
+        },
+        {
+          "metodo": "GET",
+          "rota": "/eventos/1",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": {
+            "titulo": "Workshop",
+            "descricao": "Demonstração APS 3",
+            "data": "2026-12-01",
+            "horario": "19:00:00",
+            "local": "Sala 1",
+            "capacidade": 2,
+            "categoria": "Workshop",
+            "id": 1
+          }
+        }
+      ]
+    },
+    {
+      "numero": 2,
+      "cenario": "Cadastro e consulta de participantes",
+      "resultado": "aprovado",
+      "requisicoes": [
+        {
+          "metodo": "POST",
+          "rota": "/participantes",
+          "json_enviado": {
+            "nome": "Teste 1",
+            "email": "teste1@example.com",
+            "curso": "Computacao"
+          },
+          "status_esperado": 201,
+          "status_observado": 201,
+          "json_recebido": {
+            "nome": "Teste 1",
+            "email": "teste1@example.com",
+            "curso": "Computacao",
+            "id": 1
+          }
+        },
+        {
+          "metodo": "GET",
+          "rota": "/participantes/1",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": {
+            "nome": "Teste 1",
+            "email": "teste1@example.com",
+            "curso": "Computacao",
+            "id": 1
+          }
+        },
+        {
+          "metodo": "POST",
+          "rota": "/participantes",
+          "json_enviado": {
+            "nome": "Teste 2",
+            "email": "teste2@example.com",
+            "curso": "Computacao"
+          },
+          "status_esperado": 201,
+          "status_observado": 201,
+          "json_recebido": {
+            "nome": "Teste 2",
+            "email": "teste2@example.com",
+            "curso": "Computacao",
+            "id": 2
+          }
+        },
+        {
+          "metodo": "GET",
+          "rota": "/participantes/2",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": {
+            "nome": "Teste 2",
+            "email": "teste2@example.com",
+            "curso": "Computacao",
+            "id": 2
+          }
+        },
+        {
+          "metodo": "POST",
+          "rota": "/participantes",
+          "json_enviado": {
+            "nome": "Teste 3",
+            "email": "teste3@example.com",
+            "curso": "Direito"
+          },
+          "status_esperado": 201,
+          "status_observado": 201,
+          "json_recebido": {
+            "nome": "Teste 3",
+            "email": "teste3@example.com",
+            "curso": "Direito",
+            "id": 3
+          }
+        },
+        {
+          "metodo": "GET",
+          "rota": "/participantes/3",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": {
+            "nome": "Teste 3",
+            "email": "teste3@example.com",
+            "curso": "Direito",
+            "id": 3
+          }
+        },
+        {
+          "metodo": "GET",
+          "rota": "/participantes",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": [
+            {
+              "nome": "Teste 1",
+              "email": "teste1@example.com",
+              "curso": "Computacao",
+              "id": 1
+            },
+            {
+              "nome": "Teste 2",
+              "email": "teste2@example.com",
+              "curso": "Computacao",
+              "id": 2
+            },
+            {
+              "nome": "Teste 3",
+              "email": "teste3@example.com",
+              "curso": "Direito",
+              "id": 3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numero": 3,
+      "cenario": "Atualização e exclusão de registros",
+      "resultado": "aprovado",
+      "requisicoes": [
+        {
+          "metodo": "POST",
+          "rota": "/eventos",
+          "json_enviado": {
+            "titulo": "Workshop",
+            "descricao": "Demonstração APS 3",
+            "data": "2026-12-01",
+            "horario": "19:00",
+            "local": "Sala 1",
+            "capacidade": 2,
+            "categoria": "Workshop"
+          },
+          "status_esperado": 201,
+          "status_observado": 201,
+          "json_recebido": {
+            "titulo": "Workshop",
+            "descricao": "Demonstração APS 3",
+            "data": "2026-12-01",
+            "horario": "19:00:00",
+            "local": "Sala 1",
+            "capacidade": 2,
+            "categoria": "Workshop",
+            "id": 3
+          }
+        },
+        {
+          "metodo": "PUT",
+          "rota": "/eventos/3",
+          "json_enviado": {
+            "titulo": "Atualizado",
+            "descricao": "Demonstração APS 3",
+            "data": "2026-12-01",
+            "horario": "19:00",
+            "local": "Sala 1",
+            "capacidade": 2,
+            "categoria": "Workshop"
+          },
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": {
+            "titulo": "Atualizado",
+            "descricao": "Demonstração APS 3",
+            "data": "2026-12-01",
+            "horario": "19:00:00",
+            "local": "Sala 1",
+            "capacidade": 2,
+            "categoria": "Workshop",
+            "id": 3
+          }
+        },
+        {
+          "metodo": "GET",
+          "rota": "/eventos/3",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": {
+            "titulo": "Atualizado",
+            "descricao": "Demonstração APS 3",
+            "data": "2026-12-01",
+            "horario": "19:00:00",
+            "local": "Sala 1",
+            "capacidade": 2,
+            "categoria": "Workshop",
+            "id": 3
+          }
+        },
+        {
+          "metodo": "DELETE",
+          "rota": "/eventos/3",
+          "json_enviado": null,
+          "status_esperado": 204,
+          "status_observado": 204,
+          "json_recebido": null
+        },
+        {
+          "metodo": "GET",
+          "rota": "/eventos/3",
+          "json_enviado": null,
+          "status_esperado": 404,
+          "status_observado": 404,
+          "json_recebido": {
+            "detail": "Evento não encontrado."
+          }
+        },
+        {
+          "metodo": "POST",
+          "rota": "/participantes",
+          "json_enviado": {
+            "nome": "Temporário",
+            "email": "temporario@example.com",
+            "curso": "Outro"
+          },
+          "status_esperado": 201,
+          "status_observado": 201,
+          "json_recebido": {
+            "nome": "Temporário",
+            "email": "temporario@example.com",
+            "curso": "Outro",
+            "id": 4
+          }
+        },
+        {
+          "metodo": "PUT",
+          "rota": "/participantes/4",
+          "json_enviado": {
+            "nome": "Atualizado",
+            "email": "temporario@example.com",
+            "curso": "Outro"
+          },
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": {
+            "nome": "Atualizado",
+            "email": "temporario@example.com",
+            "curso": "Outro",
+            "id": 4
+          }
+        },
+        {
+          "metodo": "DELETE",
+          "rota": "/participantes/4",
+          "json_enviado": null,
+          "status_esperado": 204,
+          "status_observado": 204,
+          "json_recebido": null
+        },
+        {
+          "metodo": "GET",
+          "rota": "/participantes/4",
+          "json_enviado": null,
+          "status_esperado": 404,
+          "status_observado": 404,
+          "json_recebido": {
+            "detail": "Participante não encontrado."
+          }
+        }
+      ]
+    },
+    {
+      "numero": 4,
+      "cenario": "Inscrição de participante",
+      "resultado": "aprovado",
+      "requisicoes": [
+        {
+          "metodo": "POST",
+          "rota": "/eventos/1/inscricoes/1",
+          "json_enviado": null,
+          "status_esperado": 201,
+          "status_observado": 201,
+          "json_recebido": {
+            "evento_id": 1,
+            "participante_id": 1,
+            "id": 1,
+            "data_inscricao": "2026-11-18"
+          }
+        },
+        {
+          "metodo": "GET",
+          "rota": "/eventos/1/inscricoes",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": [
+            {
+              "nome": "Teste 1",
+              "email": "teste1@example.com",
+              "curso": "Computacao",
+              "id": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numero": 5,
+      "cenario": "Inscrição duplicada",
+      "resultado": "aprovado",
+      "requisicoes": [
+        {
+          "metodo": "POST",
+          "rota": "/eventos/1/inscricoes/1",
+          "json_enviado": null,
+          "status_esperado": 409,
+          "status_observado": 409,
+          "json_recebido": {
+            "detail": "Participante já está inscrito neste evento."
+          }
+        }
+      ]
+    },
+    {
+      "numero": 6,
+      "cenario": "Inscrição em evento inexistente",
+      "resultado": "aprovado",
+      "requisicoes": [
+        {
+          "metodo": "POST",
+          "rota": "/eventos/99999/inscricoes/1",
+          "json_enviado": null,
+          "status_esperado": 404,
+          "status_observado": 404,
+          "json_recebido": {
+            "detail": "Evento não encontrado."
+          }
+        },
+        {
+          "metodo": "POST",
+          "rota": "/eventos/1/inscricoes/99999",
+          "json_enviado": null,
+          "status_esperado": 404,
+          "status_observado": 404,
+          "json_recebido": {
+            "detail": "Participante não encontrado."
+          }
+        }
+      ]
+    },
+    {
+      "numero": 7,
+      "cenario": "Inscrição sem vagas",
+      "resultado": "aprovado",
+      "requisicoes": [
+        {
+          "metodo": "POST",
+          "rota": "/eventos/1/inscricoes/2",
+          "json_enviado": null,
+          "status_esperado": 201,
+          "status_observado": 201,
+          "json_recebido": {
+            "evento_id": 1,
+            "participante_id": 2,
+            "id": 2,
+            "data_inscricao": "2026-11-18"
+          }
+        },
+        {
+          "metodo": "POST",
+          "rota": "/eventos/1/inscricoes/3",
+          "json_enviado": null,
+          "status_esperado": 409,
+          "status_observado": 409,
+          "json_recebido": {
+            "detail": "Não existem vagas disponíveis para este evento."
+          }
+        },
+        {
+          "metodo": "GET",
+          "rota": "/eventos/1/inscricoes",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": [
+            {
+              "nome": "Teste 1",
+              "email": "teste1@example.com",
+              "curso": "Computacao",
+              "id": 1
+            },
+            {
+              "nome": "Teste 2",
+              "email": "teste2@example.com",
+              "curso": "Computacao",
+              "id": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numero": 8,
+      "cenario": "Persistência após reiniciar o processo da API",
+      "resultado": "aprovado",
+      "requisicoes": [
+        {
+          "metodo": "GET",
+          "rota": "/eventos/1/inscricoes",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": [
+            {
+              "nome": "Teste 1",
+              "email": "teste1@example.com",
+              "curso": "Computacao",
+              "id": 1
+            },
+            {
+              "nome": "Teste 2",
+              "email": "teste2@example.com",
+              "curso": "Computacao",
+              "id": 2
+            }
+          ]
+        },
+        {
+          "metodo": "GET",
+          "rota": "/eventos/1",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": {
+            "titulo": "Workshop",
+            "descricao": "Demonstração APS 3",
+            "data": "2026-12-01",
+            "horario": "19:00:00",
+            "local": "Sala 1",
+            "capacidade": 2,
+            "categoria": "Workshop",
+            "id": 1
+          }
+        },
+        {
+          "metodo": "GET",
+          "rota": "/participantes",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": [
+            {
+              "nome": "Teste 1",
+              "email": "teste1@example.com",
+              "curso": "Computacao",
+              "id": 1
+            },
+            {
+              "nome": "Teste 2",
+              "email": "teste2@example.com",
+              "curso": "Computacao",
+              "id": 2
+            },
+            {
+              "nome": "Teste 3",
+              "email": "teste3@example.com",
+              "curso": "Direito",
+              "id": 3
+            }
+          ]
+        },
+        {
+          "metodo": "POST",
+          "rota": "/eventos/1/inscricoes/1",
+          "json_enviado": null,
+          "status_esperado": 409,
+          "status_observado": 409,
+          "json_recebido": {
+            "detail": "Participante já está inscrito neste evento."
+          }
+        }
+      ],
+      "inscricao_verificada_no_arquivo": [
+        1,
+        "2026-11-18"
+      ]
+    },
+    {
+      "numero": 9,
+      "cenario": "Relatório de ocupação",
+      "resultado": "aprovado",
+      "requisicoes": [
+        {
+          "metodo": "GET",
+          "rota": "/relatorios/eventos/ocupacao",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": [
+            {
+              "evento_id": 1,
+              "titulo": "Workshop",
+              "capacidade": 2,
+              "total_inscritos": 2,
+              "vagas_disponiveis": 0,
+              "percentual_ocupacao": 100.0
+            },
+            {
+              "evento_id": 2,
+              "titulo": "Workshop",
+              "capacidade": 2,
+              "total_inscritos": 0,
+              "vagas_disponiveis": 2,
+              "percentual_ocupacao": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numero": 10,
+      "cenario": "Relatório por categoria",
+      "resultado": "aprovado",
+      "requisicoes": [
+        {
+          "metodo": "GET",
+          "rota": "/relatorios/eventos/categorias",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": [
+            {
+              "categoria": "Workshop",
+              "total_eventos": 2,
+              "capacidade_total": 4,
+              "total_inscricoes": 2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numero": 11,
+      "cenario": "Relatório por curso",
+      "resultado": "aprovado",
+      "requisicoes": [
+        {
+          "metodo": "GET",
+          "rota": "/relatorios/participantes/cursos",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": [
+            {
+              "curso": "Computacao",
+              "total_participantes": 2,
+              "total_inscricoes": 2
+            },
+            {
+              "curso": "Direito",
+              "total_participantes": 1,
+              "total_inscricoes": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "numero": 12,
+      "cenario": "Relatórios após inserir, atualizar e excluir",
+      "resultado": "aprovado",
+      "requisicoes": [
+        {
+          "metodo": "POST",
+          "rota": "/eventos/2/inscricoes/1",
+          "json_enviado": null,
+          "status_esperado": 201,
+          "status_observado": 201,
+          "json_recebido": {
+            "evento_id": 2,
+            "participante_id": 1,
+            "id": 3,
+            "data_inscricao": "2026-11-18"
+          }
+        },
+        {
+          "metodo": "GET",
+          "rota": "/relatorios/eventos/ocupacao",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": [
+            {
+              "evento_id": 1,
+              "titulo": "Workshop",
+              "capacidade": 2,
+              "total_inscritos": 2,
+              "vagas_disponiveis": 0,
+              "percentual_ocupacao": 100.0
+            },
+            {
+              "evento_id": 2,
+              "titulo": "Workshop",
+              "capacidade": 2,
+              "total_inscritos": 1,
+              "vagas_disponiveis": 1,
+              "percentual_ocupacao": 50.0
+            }
+          ]
+        },
+        {
+          "metodo": "GET",
+          "rota": "/relatorios/eventos/categorias",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": [
+            {
+              "categoria": "Workshop",
+              "total_eventos": 2,
+              "capacidade_total": 4,
+              "total_inscricoes": 3
+            }
+          ]
+        },
+        {
+          "metodo": "GET",
+          "rota": "/relatorios/participantes/cursos",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": [
+            {
+              "curso": "Computacao",
+              "total_participantes": 2,
+              "total_inscricoes": 3
+            },
+            {
+              "curso": "Direito",
+              "total_participantes": 1,
+              "total_inscricoes": 0
+            }
+          ]
+        },
+        {
+          "metodo": "PUT",
+          "rota": "/eventos/1",
+          "json_enviado": {
+            "titulo": "Workshop",
+            "descricao": "Demonstração APS 3",
+            "data": "2026-12-01",
+            "horario": "19:00",
+            "local": "Sala 1",
+            "capacidade": 4,
+            "categoria": "Palestra"
+          },
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": {
+            "titulo": "Workshop",
+            "descricao": "Demonstração APS 3",
+            "data": "2026-12-01",
+            "horario": "19:00:00",
+            "local": "Sala 1",
+            "capacidade": 4,
+            "categoria": "Palestra",
+            "id": 1
+          }
+        },
+        {
+          "metodo": "PUT",
+          "rota": "/participantes/1",
+          "json_enviado": {
+            "nome": "Teste 1",
+            "email": "teste1@example.com",
+            "curso": "Direito",
+            "id": 1
+          },
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": {
+            "nome": "Teste 1",
+            "email": "teste1@example.com",
+            "curso": "Direito",
+            "id": 1
+          }
+        },
+        {
+          "metodo": "GET",
+          "rota": "/relatorios/eventos/ocupacao",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": [
+            {
+              "evento_id": 1,
+              "titulo": "Workshop",
+              "capacidade": 4,
+              "total_inscritos": 2,
+              "vagas_disponiveis": 2,
+              "percentual_ocupacao": 50.0
+            },
+            {
+              "evento_id": 2,
+              "titulo": "Workshop",
+              "capacidade": 2,
+              "total_inscritos": 1,
+              "vagas_disponiveis": 1,
+              "percentual_ocupacao": 50.0
+            }
+          ]
+        },
+        {
+          "metodo": "GET",
+          "rota": "/relatorios/eventos/categorias",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": [
+            {
+              "categoria": "Palestra",
+              "total_eventos": 1,
+              "capacidade_total": 4,
+              "total_inscricoes": 2
+            },
+            {
+              "categoria": "Workshop",
+              "total_eventos": 1,
+              "capacidade_total": 2,
+              "total_inscricoes": 1
+            }
+          ]
+        },
+        {
+          "metodo": "GET",
+          "rota": "/relatorios/participantes/cursos",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": [
+            {
+              "curso": "Computacao",
+              "total_participantes": 1,
+              "total_inscricoes": 1
+            },
+            {
+              "curso": "Direito",
+              "total_participantes": 2,
+              "total_inscricoes": 2
+            }
+          ]
+        },
+        {
+          "metodo": "DELETE",
+          "rota": "/participantes/1",
+          "json_enviado": null,
+          "status_esperado": 204,
+          "status_observado": 204,
+          "json_recebido": null
+        },
+        {
+          "metodo": "GET",
+          "rota": "/relatorios/eventos/ocupacao",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": [
+            {
+              "evento_id": 1,
+              "titulo": "Workshop",
+              "capacidade": 4,
+              "total_inscritos": 1,
+              "vagas_disponiveis": 3,
+              "percentual_ocupacao": 25.0
+            },
+            {
+              "evento_id": 2,
+              "titulo": "Workshop",
+              "capacidade": 2,
+              "total_inscritos": 0,
+              "vagas_disponiveis": 2,
+              "percentual_ocupacao": 0.0
+            }
+          ]
+        },
+        {
+          "metodo": "GET",
+          "rota": "/relatorios/eventos/categorias",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": [
+            {
+              "categoria": "Palestra",
+              "total_eventos": 1,
+              "capacidade_total": 4,
+              "total_inscricoes": 1
+            },
+            {
+              "categoria": "Workshop",
+              "total_eventos": 1,
+              "capacidade_total": 2,
+              "total_inscricoes": 0
+            }
+          ]
+        },
+        {
+          "metodo": "GET",
+          "rota": "/relatorios/participantes/cursos",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": [
+            {
+              "curso": "Computacao",
+              "total_participantes": 1,
+              "total_inscricoes": 1
+            },
+            {
+              "curso": "Direito",
+              "total_participantes": 1,
+              "total_inscricoes": 0
+            }
+          ]
+        },
+        {
+          "metodo": "DELETE",
+          "rota": "/eventos/1",
+          "json_enviado": null,
+          "status_esperado": 204,
+          "status_observado": 204,
+          "json_recebido": null
+        },
+        {
+          "metodo": "DELETE",
+          "rota": "/eventos/2",
+          "json_enviado": null,
+          "status_esperado": 204,
+          "status_observado": 204,
+          "json_recebido": null
+        },
+        {
+          "metodo": "GET",
+          "rota": "/relatorios/eventos/ocupacao",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": []
+        },
+        {
+          "metodo": "GET",
+          "rota": "/relatorios/eventos/categorias",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": []
+        },
+        {
+          "metodo": "GET",
+          "rota": "/relatorios/participantes/cursos",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": [
+            {
+              "curso": "Computacao",
+              "total_participantes": 1,
+              "total_inscricoes": 0
+            },
+            {
+              "curso": "Direito",
+              "total_participantes": 1,
+              "total_inscricoes": 0
+            }
+          ]
+        },
+        {
+          "metodo": "GET",
+          "rota": "/docs",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": null
+        },
+        {
+          "metodo": "GET",
+          "rota": "/openapi.json",
+          "json_enviado": null,
+          "status_esperado": 200,
+          "status_observado": 200,
+          "json_recebido": {
+            "openapi": "3.1.0",
+            "info": {
+              "title": "API de Eventos Acadêmicos",
+              "description": "API para gerenciamento de eventos, participantes e inscrições.",
+              "version": "1.0.0"
+            },
+            "paths": {
+              "/eventos": {
+                "get": {
+                  "tags": [
+                    "Eventos"
+                  ],
+                  "summary": "Ver Eventos",
+                  "operationId": "ver_eventos_eventos_get",
+                  "responses": {
+                    "200": {
+                      "description": "Successful Response",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/EventoRead"
+                            },
+                            "type": "array",
+                            "title": "Response Ver Eventos Eventos Get"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "post": {
+                  "tags": [
+                    "Eventos"
+                  ],
+                  "summary": "Criar Eventos",
+                  "operationId": "criar_eventos_eventos_post",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/EventoCreate"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "201": {
+                      "description": "Successful Response",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/EventoRead"
+                          }
+                        }
+                      }
+                    },
+                    "422": {
+                      "description": "Validation Error",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/HTTPValidationError"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerJWT": []
+                    }
+                  ]
+                }
+              },
+              "/eventos/{id}": {
+                "get": {
+                  "tags": [
+                    "Eventos"
+                  ],
+                  "summary": "Listar Evento",
+                  "operationId": "listar_evento_eventos__id__get",
+                  "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "schema": {
+                        "type": "integer",
+                        "title": "Id"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Successful Response",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/EventoRead"
+                          }
+                        }
+                      }
+                    },
+                    "422": {
+                      "description": "Validation Error",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/HTTPValidationError"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "put": {
+                  "tags": [
+                    "Eventos"
+                  ],
+                  "summary": "Trocar Evento",
+                  "operationId": "trocar_evento_eventos__id__put",
+                  "security": [
+                    {
+                      "BearerJWT": []
+                    }
+                  ],
+                  "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "schema": {
+                        "type": "integer",
+                        "title": "Id"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "required": true,
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/EventoUpdate"
+                        }
+                      }
+                    }
+                  },
+                  "responses": {
+                    "200": {
+                      "description": "Successful Response",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/EventoRead"
+                          }
+                        }
+                      }
+                    },
+                    "422": {
+                      "description": "Validation Error",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/HTTPValidationError"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "delete": {
+                  "tags": [
+                    "Eventos"
+                  ],
+                  "summary": "Deletar Evento",
+                  "operationId": "deletar_evento_eventos__id__delete",
+                  "security": [
+                    {
+                      "BearerJWT": []
+                    }
+                  ],
+                  "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "schema": {
+                        "type": "integer",
+                        "title": "Id"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "204": {
+                      "description": "Successful Response"
+                    },
+                    "422": {
+                      "description": "Validation Error",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/HTTPValidationError"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "/participantes": {
+                "get": {
+                  "tags": [
+                    "Participantes"
+                  ],
+                  "summary": "Listar Participantes",
+                  "operationId": "listar_participantes_participantes_get",
+                  "responses": {
+                    "200": {
+                      "description": "Successful Response",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/ParticipanteRead"
+                            },
+                            "type": "array",
+                            "title": "Response Listar Participantes Participantes Get"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerJWT": []
+                    }
+                  ]
+                },
+                "post": {
+                  "tags": [
+                    "Participantes"
+                  ],
+                  "summary": "Cadastrar Participante",
+                  "operationId": "cadastrar_participante_participantes_post",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/ParticipanteCreate"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "201": {
+                      "description": "Successful Response",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ParticipanteRead"
+                          }
+                        }
+                      }
+                    },
+                    "422": {
+                      "description": "Validation Error",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/HTTPValidationError"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerJWT": []
+                    }
+                  ]
+                }
+              },
+              "/participantes/{id}": {
+                "get": {
+                  "tags": [
+                    "Participantes"
+                  ],
+                  "summary": "Consultar Participante",
+                  "operationId": "consultar_participante_participantes__id__get",
+                  "security": [
+                    {
+                      "BearerJWT": []
+                    }
+                  ],
+                  "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "schema": {
+                        "type": "integer",
+                        "title": "Id"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Successful Response",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ParticipanteRead"
+                          }
+                        }
+                      }
+                    },
+                    "422": {
+                      "description": "Validation Error",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/HTTPValidationError"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "put": {
+                  "tags": [
+                    "Participantes"
+                  ],
+                  "summary": "Alterar Participante",
+                  "operationId": "alterar_participante_participantes__id__put",
+                  "security": [
+                    {
+                      "BearerJWT": []
+                    }
+                  ],
+                  "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "schema": {
+                        "type": "integer",
+                        "title": "Id"
+                      }
+                    }
+                  ],
+                  "requestBody": {
+                    "required": true,
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/ParticipanteUpdate"
+                        }
+                      }
+                    }
+                  },
+                  "responses": {
+                    "200": {
+                      "description": "Successful Response",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/ParticipanteRead"
+                          }
+                        }
+                      }
+                    },
+                    "422": {
+                      "description": "Validation Error",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/HTTPValidationError"
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "delete": {
+                  "tags": [
+                    "Participantes"
+                  ],
+                  "summary": "Deletar Participante",
+                  "operationId": "deletar_participante_participantes__id__delete",
+                  "security": [
+                    {
+                      "BearerJWT": []
+                    }
+                  ],
+                  "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "schema": {
+                        "type": "integer",
+                        "title": "Id"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "204": {
+                      "description": "Successful Response"
+                    },
+                    "422": {
+                      "description": "Validation Error",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/HTTPValidationError"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "/eventos/{evento_id}/inscricoes/{participante_id}": {
+                "post": {
+                  "tags": [
+                    "Inscrições"
+                  ],
+                  "summary": "Inscrever Participante",
+                  "operationId": "inscrever_participante_eventos__evento_id__inscricoes__participante_id__post",
+                  "security": [
+                    {
+                      "BearerJWT": []
+                    }
+                  ],
+                  "parameters": [
+                    {
+                      "name": "evento_id",
+                      "in": "path",
+                      "required": true,
+                      "schema": {
+                        "type": "integer",
+                        "exclusiveMinimum": 0,
+                        "title": "Evento Id"
+                      }
+                    },
+                    {
+                      "name": "participante_id",
+                      "in": "path",
+                      "required": true,
+                      "schema": {
+                        "type": "integer",
+                        "exclusiveMinimum": 0,
+                        "title": "Participante Id"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "201": {
+                      "description": "Successful Response",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/InscricaoRead"
+                          }
+                        }
+                      }
+                    },
+                    "422": {
+                      "description": "Validation Error",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/HTTPValidationError"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "/eventos/{evento_id}/inscricoes": {
+                "get": {
+                  "tags": [
+                    "Inscrições"
+                  ],
+                  "summary": "Listar Inscritos",
+                  "operationId": "listar_inscritos_eventos__evento_id__inscricoes_get",
+                  "security": [
+                    {
+                      "BearerJWT": []
+                    }
+                  ],
+                  "parameters": [
+                    {
+                      "name": "evento_id",
+                      "in": "path",
+                      "required": true,
+                      "schema": {
+                        "type": "integer",
+                        "exclusiveMinimum": 0,
+                        "title": "Evento Id"
+                      }
+                    }
+                  ],
+                  "responses": {
+                    "200": {
+                      "description": "Successful Response",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "type": "array",
+                            "items": {
+                              "$ref": "#/components/schemas/ParticipanteRead"
+                            },
+                            "title": "Response Listar Inscritos Eventos  Evento Id  Inscricoes Get"
+                          }
+                        }
+                      }
+                    },
+                    "422": {
+                      "description": "Validation Error",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/HTTPValidationError"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "/relatorios/eventos/ocupacao": {
+                "get": {
+                  "tags": [
+                    "Relatórios"
+                  ],
+                  "summary": "Relatorio Ocupacao",
+                  "operationId": "relatorio_ocupacao_relatorios_eventos_ocupacao_get",
+                  "responses": {
+                    "200": {
+                      "description": "Successful Response",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/OcupacaoEventoRead"
+                            },
+                            "type": "array",
+                            "title": "Response Relatorio Ocupacao Relatorios Eventos Ocupacao Get"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerJWT": []
+                    }
+                  ]
+                }
+              },
+              "/relatorios/eventos/categorias": {
+                "get": {
+                  "tags": [
+                    "Relatórios"
+                  ],
+                  "summary": "Relatorio Categorias",
+                  "operationId": "relatorio_categorias_relatorios_eventos_categorias_get",
+                  "responses": {
+                    "200": {
+                      "description": "Successful Response",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/CategoriaEventosRead"
+                            },
+                            "type": "array",
+                            "title": "Response Relatorio Categorias Relatorios Eventos Categorias Get"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerJWT": []
+                    }
+                  ]
+                }
+              },
+              "/relatorios/participantes/cursos": {
+                "get": {
+                  "tags": [
+                    "Relatórios"
+                  ],
+                  "summary": "Relatorio Cursos",
+                  "operationId": "relatorio_cursos_relatorios_participantes_cursos_get",
+                  "responses": {
+                    "200": {
+                      "description": "Successful Response",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "items": {
+                              "$ref": "#/components/schemas/CursoParticipantesRead"
+                            },
+                            "type": "array",
+                            "title": "Response Relatorio Cursos Relatorios Participantes Cursos Get"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerJWT": []
+                    }
+                  ]
+                }
+              },
+              "/usuarios": {
+                "post": {
+                  "tags": [
+                    "Usuários"
+                  ],
+                  "summary": "Cadastrar Usuario",
+                  "operationId": "cadastrar_usuario_usuarios_post",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/UsuarioCreate"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "201": {
+                      "description": "Successful Response",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/UsuarioRead"
+                          }
+                        }
+                      }
+                    },
+                    "422": {
+                      "description": "Validation Error",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/HTTPValidationError"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "/auth/me": {
+                "get": {
+                  "tags": [
+                    "Autenticação"
+                  ],
+                  "summary": "Me",
+                  "operationId": "me_auth_me_get",
+                  "responses": {
+                    "200": {
+                      "description": "Successful Response",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/UsuarioRead"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "security": [
+                    {
+                      "BearerJWT": []
+                    }
+                  ]
+                }
+              },
+              "/auth/login": {
+                "post": {
+                  "tags": [
+                    "Autenticação"
+                  ],
+                  "summary": "Login",
+                  "operationId": "login_auth_login_post",
+                  "requestBody": {
+                    "content": {
+                      "application/json": {
+                        "schema": {
+                          "$ref": "#/components/schemas/LoginCreate"
+                        }
+                      }
+                    },
+                    "required": true
+                  },
+                  "responses": {
+                    "200": {
+                      "description": "Successful Response",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/TokenRead"
+                          }
+                        }
+                      }
+                    },
+                    "422": {
+                      "description": "Validation Error",
+                      "content": {
+                        "application/json": {
+                          "schema": {
+                            "$ref": "#/components/schemas/HTTPValidationError"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "/": {
+                "get": {
+                  "summary": "Inicio",
+                  "operationId": "inicio__get",
+                  "responses": {
+                    "200": {
+                      "description": "Successful Response",
+                      "content": {
+                        "application/json": {
+                          "schema": {}
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "components": {
+              "schemas": {
+                "CategoriaEventosRead": {
+                  "properties": {
+                    "categoria": {
+                      "type": "string",
+                      "title": "Categoria"
+                    },
+                    "total_eventos": {
+                      "type": "integer",
+                      "title": "Total Eventos"
+                    },
+                    "capacidade_total": {
+                      "type": "integer",
+                      "title": "Capacidade Total"
+                    },
+                    "total_inscricoes": {
+                      "type": "integer",
+                      "title": "Total Inscricoes"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "categoria",
+                    "total_eventos",
+                    "capacidade_total",
+                    "total_inscricoes"
+                  ],
+                  "title": "CategoriaEventosRead"
+                },
+                "CursoParticipantesRead": {
+                  "properties": {
+                    "curso": {
+                      "type": "string",
+                      "title": "Curso"
+                    },
+                    "total_participantes": {
+                      "type": "integer",
+                      "title": "Total Participantes"
+                    },
+                    "total_inscricoes": {
+                      "type": "integer",
+                      "title": "Total Inscricoes"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "curso",
+                    "total_participantes",
+                    "total_inscricoes"
+                  ],
+                  "title": "CursoParticipantesRead"
+                },
+                "EventoCreate": {
+                  "properties": {
+                    "titulo": {
+                      "type": "string",
+                      "minLength": 1,
+                      "title": "Titulo"
+                    },
+                    "descricao": {
+                      "type": "string",
+                      "minLength": 1,
+                      "title": "Descricao"
+                    },
+                    "data": {
+                      "type": "string",
+                      "format": "date",
+                      "title": "Data"
+                    },
+                    "horario": {
+                      "type": "string",
+                      "format": "time",
+                      "title": "Horario"
+                    },
+                    "local": {
+                      "type": "string",
+                      "minLength": 1,
+                      "title": "Local"
+                    },
+                    "capacidade": {
+                      "type": "integer",
+                      "exclusiveMinimum": 0.0,
+                      "title": "Capacidade"
+                    },
+                    "categoria": {
+                      "type": "string",
+                      "minLength": 1,
+                      "title": "Categoria"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "titulo",
+                    "descricao",
+                    "data",
+                    "horario",
+                    "local",
+                    "capacidade",
+                    "categoria"
+                  ],
+                  "title": "EventoCreate"
+                },
+                "EventoRead": {
+                  "properties": {
+                    "titulo": {
+                      "type": "string",
+                      "minLength": 1,
+                      "title": "Titulo"
+                    },
+                    "descricao": {
+                      "type": "string",
+                      "minLength": 1,
+                      "title": "Descricao"
+                    },
+                    "data": {
+                      "type": "string",
+                      "format": "date",
+                      "title": "Data"
+                    },
+                    "horario": {
+                      "type": "string",
+                      "format": "time",
+                      "title": "Horario"
+                    },
+                    "local": {
+                      "type": "string",
+                      "minLength": 1,
+                      "title": "Local"
+                    },
+                    "capacidade": {
+                      "type": "integer",
+                      "exclusiveMinimum": 0.0,
+                      "title": "Capacidade"
+                    },
+                    "categoria": {
+                      "type": "string",
+                      "minLength": 1,
+                      "title": "Categoria"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "exclusiveMinimum": 0.0,
+                      "title": "Id"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "titulo",
+                    "descricao",
+                    "data",
+                    "horario",
+                    "local",
+                    "capacidade",
+                    "categoria",
+                    "id"
+                  ],
+                  "title": "EventoRead"
+                },
+                "EventoUpdate": {
+                  "properties": {
+                    "titulo": {
+                      "type": "string",
+                      "minLength": 1,
+                      "title": "Titulo"
+                    },
+                    "descricao": {
+                      "type": "string",
+                      "minLength": 1,
+                      "title": "Descricao"
+                    },
+                    "data": {
+                      "type": "string",
+                      "format": "date",
+                      "title": "Data"
+                    },
+                    "horario": {
+                      "type": "string",
+                      "format": "time",
+                      "title": "Horario"
+                    },
+                    "local": {
+                      "type": "string",
+                      "minLength": 1,
+                      "title": "Local"
+                    },
+                    "capacidade": {
+                      "type": "integer",
+                      "exclusiveMinimum": 0.0,
+                      "title": "Capacidade"
+                    },
+                    "categoria": {
+                      "type": "string",
+                      "minLength": 1,
+                      "title": "Categoria"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "titulo",
+                    "descricao",
+                    "data",
+                    "horario",
+                    "local",
+                    "capacidade",
+                    "categoria"
+                  ],
+                  "title": "EventoUpdate",
+                  "description": "Atualização completa via PUT, com os mesmos campos obrigatórios."
+                },
+                "HTTPValidationError": {
+                  "properties": {
+                    "detail": {
+                      "items": {
+                        "$ref": "#/components/schemas/ValidationError"
+                      },
+                      "type": "array",
+                      "title": "Detail"
+                    }
+                  },
+                  "type": "object",
+                  "title": "HTTPValidationError"
+                },
+                "InscricaoRead": {
+                  "properties": {
+                    "evento_id": {
+                      "type": "integer",
+                      "exclusiveMinimum": 0.0,
+                      "title": "Evento Id"
+                    },
+                    "participante_id": {
+                      "type": "integer",
+                      "exclusiveMinimum": 0.0,
+                      "title": "Participante Id"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "exclusiveMinimum": 0.0,
+                      "title": "Id"
+                    },
+                    "data_inscricao": {
+                      "type": "string",
+                      "format": "date",
+                      "title": "Data Inscricao"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "evento_id",
+                    "participante_id",
+                    "id",
+                    "data_inscricao"
+                  ],
+                  "title": "InscricaoRead"
+                },
+                "LoginCreate": {
+                  "properties": {
+                    "email": {
+                      "type": "string",
+                      "format": "email",
+                      "title": "Email"
+                    },
+                    "senha": {
+                      "type": "string",
+                      "maxLength": 128,
+                      "format": "password",
+                      "title": "Senha",
+                      "writeOnly": true
+                    }
+                  },
+                  "additionalProperties": false,
+                  "type": "object",
+                  "required": [
+                    "email",
+                    "senha"
+                  ],
+                  "title": "LoginCreate"
+                },
+                "OcupacaoEventoRead": {
+                  "properties": {
+                    "evento_id": {
+                      "type": "integer",
+                      "title": "Evento Id"
+                    },
+                    "titulo": {
+                      "type": "string",
+                      "title": "Titulo"
+                    },
+                    "capacidade": {
+                      "type": "integer",
+                      "title": "Capacidade"
+                    },
+                    "total_inscritos": {
+                      "type": "integer",
+                      "title": "Total Inscritos"
+                    },
+                    "vagas_disponiveis": {
+                      "type": "integer",
+                      "title": "Vagas Disponiveis"
+                    },
+                    "percentual_ocupacao": {
+                      "type": "number",
+                      "title": "Percentual Ocupacao"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "evento_id",
+                    "titulo",
+                    "capacidade",
+                    "total_inscritos",
+                    "vagas_disponiveis",
+                    "percentual_ocupacao"
+                  ],
+                  "title": "OcupacaoEventoRead"
+                },
+                "ParticipanteCreate": {
+                  "properties": {
+                    "nome": {
+                      "type": "string",
+                      "minLength": 1,
+                      "title": "Nome"
+                    },
+                    "email": {
+                      "type": "string",
+                      "format": "email",
+                      "title": "Email"
+                    },
+                    "curso": {
+                      "type": "string",
+                      "minLength": 1,
+                      "title": "Curso"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "nome",
+                    "email",
+                    "curso"
+                  ],
+                  "title": "ParticipanteCreate"
+                },
+                "ParticipanteRead": {
+                  "properties": {
+                    "nome": {
+                      "type": "string",
+                      "minLength": 1,
+                      "title": "Nome"
+                    },
+                    "email": {
+                      "type": "string",
+                      "format": "email",
+                      "title": "Email"
+                    },
+                    "curso": {
+                      "type": "string",
+                      "minLength": 1,
+                      "title": "Curso"
+                    },
+                    "id": {
+                      "type": "integer",
+                      "exclusiveMinimum": 0.0,
+                      "title": "Id"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "nome",
+                    "email",
+                    "curso",
+                    "id"
+                  ],
+                  "title": "ParticipanteRead"
+                },
+                "ParticipanteUpdate": {
+                  "properties": {
+                    "nome": {
+                      "type": "string",
+                      "minLength": 1,
+                      "title": "Nome"
+                    },
+                    "email": {
+                      "type": "string",
+                      "format": "email",
+                      "title": "Email"
+                    },
+                    "curso": {
+                      "type": "string",
+                      "minLength": 1,
+                      "title": "Curso"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "nome",
+                    "email",
+                    "curso"
+                  ],
+                  "title": "ParticipanteUpdate",
+                  "description": "Atualização completa via PUT, com os mesmos campos obrigatórios."
+                },
+                "TokenRead": {
+                  "properties": {
+                    "access_token": {
+                      "type": "string",
+                      "title": "Access Token"
+                    },
+                    "token_type": {
+                      "type": "string",
+                      "const": "bearer",
+                      "title": "Token Type",
+                      "default": "bearer"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "access_token"
+                  ],
+                  "title": "TokenRead"
+                },
+                "UsuarioCreate": {
+                  "properties": {
+                    "nome": {
+                      "type": "string",
+                      "maxLength": 120,
+                      "minLength": 1,
+                      "title": "Nome"
+                    },
+                    "email": {
+                      "type": "string",
+                      "format": "email",
+                      "title": "Email"
+                    },
+                    "senha": {
+                      "type": "string",
+                      "maxLength": 128,
+                      "minLength": 8,
+                      "format": "password",
+                      "title": "Senha",
+                      "writeOnly": true
+                    }
+                  },
+                  "additionalProperties": false,
+                  "type": "object",
+                  "required": [
+                    "nome",
+                    "email",
+                    "senha"
+                  ],
+                  "title": "UsuarioCreate"
+                },
+                "UsuarioRead": {
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "title": "Id"
+                    },
+                    "nome": {
+                      "type": "string",
+                      "title": "Nome"
+                    },
+                    "email": {
+                      "type": "string",
+                      "format": "email",
+                      "title": "Email"
+                    },
+                    "perfil": {
+                      "type": "string",
+                      "enum": [
+                        "usuario",
+                        "administrador"
+                      ],
+                      "title": "Perfil"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "id",
+                    "nome",
+                    "email",
+                    "perfil"
+                  ],
+                  "title": "UsuarioRead"
+                },
+                "ValidationError": {
+                  "properties": {
+                    "loc": {
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "integer"
+                          }
+                        ]
+                      },
+                      "type": "array",
+                      "title": "Location"
+                    },
+                    "msg": {
+                      "type": "string",
+                      "title": "Message"
+                    },
+                    "type": {
+                      "type": "string",
+                      "title": "Error Type"
+                    },
+                    "input": {
+                      "title": "Input"
+                    },
+                    "ctx": {
+                      "type": "object",
+                      "title": "Context"
+                    }
+                  },
+                  "type": "object",
+                  "required": [
+                    "loc",
+                    "msg",
+                    "type"
+                  ],
+                  "title": "ValidationError"
+                }
+              },
+              "securitySchemes": {
+                "BearerJWT": {
+                  "type": "http",
+                  "scheme": "bearer",
+                  "bearerFormat": "JWT"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "regressao_autenticada": true,
+  "integridade_banco_temporario": {
+    "integrity_check": [
+      [
+        "ok"
+      ]
+    ],
+    "foreign_key_check": [],
+    "inscricoes_apos_cascatas": 0
+  },
+  "resultado": "aprovado",
+  "banco_real_preservado": true,
+  "fim_utc": "2026-11-18T20:05:56.831989+00:00"
+}

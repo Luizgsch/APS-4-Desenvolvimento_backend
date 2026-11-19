@@ -1,0 +1,76 @@
+{
+  "inicio_utc": "2026-11-18T19:34:49.885547+00:00",
+  "metodo": "HTTP real com Uvicorn e banco temporario; senha omitida das evidencias",
+  "banco_temporario": true,
+  "processos": [
+    25340
+  ],
+  "cenarios": [
+    {
+      "numero": 1,
+      "cenario": "Cadastro publico e hash persistido",
+      "resultado": "aprovado",
+      "requisicoes": [
+        {
+          "metodo": "POST",
+          "rota": "/usuarios",
+          "json_enviado": {
+            "nome": "Aluno",
+            "email": "aluno@example.com"
+          },
+          "status_esperado": 201,
+          "status_observado": 201,
+          "json_recebido": {
+            "id": 1,
+            "nome": "Aluno",
+            "email": "aluno@example.com",
+            "perfil": "usuario"
+          }
+        }
+      ],
+      "hash_argon2id_verificado": true
+    },
+    {
+      "numero": 2,
+      "cenario": "Email duplicado",
+      "resultado": "aprovado",
+      "requisicoes": [
+        {
+          "metodo": "POST",
+          "rota": "/usuarios",
+          "json_enviado": {
+            "nome": "Aluno",
+            "email": "ALUNO@example.com"
+          },
+          "status_esperado": 409,
+          "status_observado": 409,
+          "json_recebido": {
+            "detail": "J\u00e1 existe um usu\u00e1rio cadastrado com este e-mail."
+          }
+        }
+      ]
+    },
+    {
+      "numero": 3,
+      "cenario": "Perfil administrativo rejeitado",
+      "resultado": "aprovado",
+      "requisicoes": [
+        {
+          "metodo": "POST",
+          "rota": "/usuarios",
+          "json_enviado": {
+            "nome": "Aluno",
+            "email": "outro@example.com",
+            "perfil": "administrador"
+          },
+          "status_esperado": 422,
+          "status_observado": 422,
+          "json_recebido": {
+            "detail": "Dados de cadastro inv\u00e1lidos. Confira nome, e-mail, senha e campos permitidos."
+          }
+        }
+      ]
+    }
+  ],
+  "resultado": "aprovado"
+}

@@ -1,0 +1,258 @@
+{
+  "metodo": "HTTP real com banco e chave temporarios; senha e token omitidos",
+  "resultado": "aprovado",
+  "requisicoes": [
+    {
+      "perfil": "publico",
+      "metodo": "POST",
+      "rota": "/usuarios",
+      "status_esperado": 201,
+      "status_observado": 201,
+      "json_enviado": {
+        "nome": "Comum",
+        "email": "comum@example.com"
+      },
+      "json_recebido": {
+        "id": 2,
+        "nome": "Comum",
+        "email": "comum@example.com",
+        "perfil": "usuario"
+      }
+    },
+    {
+      "perfil": "publico",
+      "metodo": "POST",
+      "rota": "/auth/login",
+      "status_esperado": 200,
+      "status_observado": 200,
+      "json_enviado": {
+        "email": "comum@example.com"
+      },
+      "json_recebido": {
+        "access_token": "OMITIDO",
+        "token_type": "bearer"
+      }
+    },
+    {
+      "perfil": "anonimo",
+      "metodo": "POST",
+      "rota": "/eventos",
+      "status_esperado": 401,
+      "status_observado": 401,
+      "json_enviado": {
+        "titulo": "Workshop",
+        "descricao": "Demonstra\u00e7\u00e3o APS 3",
+        "data": "2026-12-01",
+        "horario": "19:00",
+        "local": "Sala 1",
+        "capacidade": 2,
+        "categoria": "Workshop"
+      },
+      "json_recebido": {
+        "detail": "N\u00e3o foi poss\u00edvel validar as credenciais."
+      }
+    },
+    {
+      "perfil": "usuario",
+      "metodo": "POST",
+      "rota": "/eventos",
+      "status_esperado": 403,
+      "status_observado": 403,
+      "json_enviado": {
+        "titulo": "Workshop",
+        "descricao": "Demonstra\u00e7\u00e3o APS 3",
+        "data": "2026-12-01",
+        "horario": "19:00",
+        "local": "Sala 1",
+        "capacidade": 2,
+        "categoria": "Workshop"
+      },
+      "json_recebido": {
+        "detail": "Voc\u00ea n\u00e3o possui permiss\u00e3o para executar esta opera\u00e7\u00e3o."
+      }
+    },
+    {
+      "perfil": "administrador",
+      "metodo": "POST",
+      "rota": "/eventos",
+      "status_esperado": 201,
+      "status_observado": 201,
+      "json_enviado": {
+        "titulo": "Workshop",
+        "descricao": "Demonstra\u00e7\u00e3o APS 3",
+        "data": "2026-12-01",
+        "horario": "19:00",
+        "local": "Sala 1",
+        "capacidade": 2,
+        "categoria": "Workshop"
+      },
+      "json_recebido": {
+        "titulo": "Workshop",
+        "descricao": "Demonstra\u00e7\u00e3o APS 3",
+        "data": "2026-12-01",
+        "horario": "19:00:00",
+        "local": "Sala 1",
+        "capacidade": 2,
+        "categoria": "Workshop",
+        "id": 1
+      }
+    },
+    {
+      "perfil": "administrador",
+      "metodo": "POST",
+      "rota": "/participantes",
+      "status_esperado": 201,
+      "status_observado": 201,
+      "json_enviado": {
+        "nome": "Teste",
+        "email": "p@example.com",
+        "curso": "Computacao"
+      },
+      "json_recebido": {
+        "nome": "Teste",
+        "email": "p@example.com",
+        "curso": "Computacao",
+        "id": 1
+      }
+    },
+    {
+      "perfil": "anonimo",
+      "metodo": "GET",
+      "rota": "/participantes",
+      "status_esperado": 401,
+      "status_observado": 401,
+      "json_enviado": null,
+      "json_recebido": {
+        "detail": "N\u00e3o foi poss\u00edvel validar as credenciais."
+      }
+    },
+    {
+      "perfil": "usuario",
+      "metodo": "GET",
+      "rota": "/participantes",
+      "status_esperado": 200,
+      "status_observado": 200,
+      "json_enviado": null,
+      "json_recebido": [
+        {
+          "nome": "Teste",
+          "email": "p@example.com",
+          "curso": "Computacao",
+          "id": 1
+        }
+      ]
+    },
+    {
+      "perfil": "usuario",
+      "metodo": "POST",
+      "rota": "/eventos/1/inscricoes/1",
+      "status_esperado": 201,
+      "status_observado": 201,
+      "json_enviado": null,
+      "json_recebido": {
+        "evento_id": 1,
+        "participante_id": 1,
+        "id": 1,
+        "data_inscricao": "2026-11-18"
+      }
+    },
+    {
+      "perfil": "usuario",
+      "metodo": "POST",
+      "rota": "/eventos/1/inscricoes/1",
+      "status_esperado": 409,
+      "status_observado": 409,
+      "json_enviado": null,
+      "json_recebido": {
+        "detail": "Participante j\u00e1 est\u00e1 inscrito neste evento."
+      }
+    },
+    {
+      "perfil": "usuario",
+      "metodo": "GET",
+      "rota": "/relatorios/eventos/ocupacao",
+      "status_esperado": 403,
+      "status_observado": 403,
+      "json_enviado": null,
+      "json_recebido": {
+        "detail": "Voc\u00ea n\u00e3o possui permiss\u00e3o para executar esta opera\u00e7\u00e3o."
+      }
+    },
+    {
+      "perfil": "administrador",
+      "metodo": "GET",
+      "rota": "/relatorios/eventos/ocupacao",
+      "status_esperado": 200,
+      "status_observado": 200,
+      "json_enviado": null,
+      "json_recebido": [
+        {
+          "evento_id": 1,
+          "titulo": "Workshop",
+          "capacidade": 2,
+          "total_inscritos": 1,
+          "vagas_disponiveis": 1,
+          "percentual_ocupacao": 50.0
+        }
+      ]
+    },
+    {
+      "perfil": "usuario",
+      "metodo": "GET",
+      "rota": "/auth/me",
+      "status_esperado": 200,
+      "status_observado": 200,
+      "json_enviado": null,
+      "json_recebido": {
+        "id": 2,
+        "nome": "Comum",
+        "email": "comum@example.com",
+        "perfil": "usuario"
+      }
+    },
+    {
+      "perfil": "administrador",
+      "metodo": "PUT",
+      "rota": "/eventos/1",
+      "status_esperado": 200,
+      "status_observado": 200,
+      "json_enviado": {
+        "titulo": "Atualizado",
+        "descricao": "Demonstra\u00e7\u00e3o APS 3",
+        "data": "2026-12-01",
+        "horario": "19:00",
+        "local": "Sala 1",
+        "capacidade": 2,
+        "categoria": "Workshop"
+      },
+      "json_recebido": {
+        "titulo": "Atualizado",
+        "descricao": "Demonstra\u00e7\u00e3o APS 3",
+        "data": "2026-12-01",
+        "horario": "19:00:00",
+        "local": "Sala 1",
+        "capacidade": 2,
+        "categoria": "Workshop",
+        "id": 1
+      }
+    },
+    {
+      "perfil": "administrador",
+      "metodo": "DELETE",
+      "rota": "/participantes/1",
+      "status_esperado": 204,
+      "status_observado": 204,
+      "json_enviado": null,
+      "json_recebido": null
+    },
+    {
+      "perfil": "administrador",
+      "metodo": "DELETE",
+      "rota": "/eventos/1",
+      "status_esperado": 204,
+      "status_observado": 204,
+      "json_enviado": null,
+      "json_recebido": null
+    }
+  ]
+}
