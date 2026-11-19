@@ -1,0 +1,16 @@
+{
+  "data": "2026-11-19",
+  "repositorio": "https://github.com/Luizgsch/APS-4-Desenvolvimento_backend",
+  "branch": "main",
+  "commit_implementacao": "247809dad3e3bc24c23d9b5c468c74ea4d05f2f3",
+  "push_implementacao": "aprovado",
+  "commit_local_igual_ao_remoto_no_momento_da_conferencia": true,
+  "arquivos_lidos_remotamente": ["README.md", "requirements.txt", "security/dependencies.py"],
+  "codigo_publicado_igual_ao_validado": true,
+  "testes_da_versao_validada": 112,
+  "chave_real_ou_jwt_encontrado_no_indice_e_historico": false,
+  "arquivos_versionados_auditados": 136,
+  "blobs_historicos_auditados": 155,
+  "aps3_e_bancos_preservados": true,
+  "nota": "Registro posterior à publicação da implementação; sua inclusão gera um commit documental adicional. Não contém credenciais ou tokens."
+}

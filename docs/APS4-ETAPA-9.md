@@ -43,7 +43,7 @@ Preparação local: 18/11/2026. Conexão do repositório próprio autorizada em 
 1. Código-fonte atualizado: incluído no pacote APS4.
 2. requirements.txt: incluído; requirements-dev.txt permite reproduzir testes.
 3. README: descrição, instalação/execução, estrutura, chave, rotas, cadastro/tokens, perfis/permissões, JSON e testes documentados.
-4. Repositório próprio definido: [Luizgsch/APS-4-Desenvolvimento_backend](https://github.com/Luizgsch/APS-4-Desenvolvimento_backend). A publicação deve ser conferida comparando o commit local e o remoto e verificando README, código e requisitos.
+4. Repositório próprio publicado: [Luizgsch/APS-4-Desenvolvimento_backend](https://github.com/Luizgsch/APS-4-Desenvolvimento_backend). Em 19/11/2026, o commit de implementação `247809dad3e3bc24c23d9b5c468c74ea4d05f2f3` foi enviado à branch main; a igualdade entre commit local e remoto foi conferida. README, requirements.txt e security/dependencies.py foram lidos novamente pelo conector GitHub. O código publicado mantém os hashes da versão que passou em 112 testes no ambiente novo.
 
 Nenhuma chave real é incluída no pacote ou nos arquivos versionáveis. A publicação não é considerada concluída enquanto não houver verificação do destino e da versão remota.
 
@@ -80,3 +80,5 @@ Entregáveis em `output/`: ZIP da APS 4, `.sha256` e `MANIFESTO.json`. Em outra 
 - APS 3 e bancos existentes devem continuar preservados. A preparação de 18/11 não havia feito commit ou push; a publicação foi autorizada em 19/11.
 
 A seção 15 pede código-fonte, requirements.txt, README e link do repositório atualizado. O repositório contém os três primeiros itens; enviar seu link disponibiliza esse conjunto. O PDF não exige expressamente anexar ZIP separado. Campos ou orientações adicionais da plataforma de entrega devem ser observados pelo aluno.
+
+Publicação verificada; não há mais pendência de definição do repositório. A pasta APS3 e os bancos de trabalho permaneceram intactos. O registro da conferência está em `docs/evidencias/aps4-publicacao/verificacao.json`.
